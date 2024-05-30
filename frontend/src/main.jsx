@@ -19,6 +19,8 @@ import ProductUpdate from './pages/Admin/ProductUpdate.jsx'
 import UserList from './pages/Admin/UserList.jsx'
 import Login from './pages/Auth/Login.jsx'
 import Register from './pages/Auth/Register.jsx'
+import Favorites from './pages/Products/Favorites.jsx'
+import ProductDetails from './pages/Products/ProductDetails.jsx'
 import Profile from './pages/Users/Profile.jsx'
 
 //router
@@ -27,7 +29,11 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<Home />} />
+      <Route index={true} path="/" element={<Home />} />
+      <Route path="/favourites" element={<Favorites/>} />
+      <Route path="/favourites/:id" element={<ProductDetails />} />
+
+
 
       {/* Protected Routes */}
       <Route path="" element={<PrivateRoute />}>

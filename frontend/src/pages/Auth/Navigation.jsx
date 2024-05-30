@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from "react-router-dom"
 import { useLogoutMutation } from '../../redux/api/usersApiSlice'
 import { logout } from '../../redux/features/auth/authSlice'
+import FavoritesCount from '../Products/FavoritesCount'
 import './Navigation.css'
 
 
@@ -58,9 +59,12 @@ function Navigation() {
                     <span className="hidden nav-item-name mt-[3rem]">CART</span>{" "}
                 </Link>
 
-                <Link to='/login' className='flex items-center transition-transform transform hover:translate-x-2'>
-                    <FaHeart className='mr-2 mt-[3rem]' size={26} />
-                    <span className="hidden nav-item-name mt-[3rem]">FAVOURITES</span>{" "}
+                <Link to='/favourites' className='flex relative'>
+                    <div className="flex items-center transition-transform transform hover:translate-x-2">
+                        <FaHeart className='mr-2 mt-[3rem]' size={26} />
+                        <span className="hidden nav-item-name mt-[3rem]">FAVOURITES</span>{" "}
+                        <FavoritesCount />
+                    </div>
                 </Link>
             </div>
 
@@ -145,6 +149,7 @@ function Navigation() {
                     </ul>
                 )}
             </div>
+
             {!userInfo && (
                 <ul>
                     <li>
@@ -162,7 +167,7 @@ function Navigation() {
                     </li>
                 </ul>
             )}
-        </div >
+        </div>
     )
 }
 
