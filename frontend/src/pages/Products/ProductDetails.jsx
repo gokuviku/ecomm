@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router"
 import toast from 'react-toastify'
 import {
@@ -20,11 +20,13 @@ import Message from '../../components/Message'
 import moment from "moment"
 import HeartIcon from "./HeartIcon"
 import Rating from "./Rating"
+import { addToCart } from "../../redux/features/cart/cartSlice"
 
 const ProductDetails = () => {
 
     const { id: productId } = useParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState("")
     const [qty, setQty] = useState("")
@@ -53,6 +55,11 @@ const ProductDetails = () => {
             toast.error(error?.data?.message || error.message)
             
         }
+    }
+
+    const addToCartHandler = ()=>{
+        dispatch(addToCart({...product,qty}))
+        navigate('/cart')
     }
 
     return (

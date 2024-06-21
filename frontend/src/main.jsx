@@ -7,6 +7,7 @@ import "./index.css"
 import CategoryList from './pages/Admin/CategoryList.jsx'
 import ProductList from './pages/Admin/ProductList.jsx'
 import store from './redux/store.js'
+import Cart from './pages/Cart.jsx'
 
 //private route
 import PrivateRoute from './components/PrivateRoute.jsx'
