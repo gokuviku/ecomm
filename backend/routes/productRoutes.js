@@ -10,6 +10,7 @@ import {
     fetchTopProduct,
     getProductById,
     updateProduct,
+    filterProducts,
 } from '../controllers/productController.js'
 import { authenticate, authorizeAdmin } from '../middlewares/authMiddleware.js'
 import checkId from '../middlewares/checkId.js'
@@ -33,6 +34,9 @@ router.route('/:id/reviews')
 router
 .get('/top', fetchTopProduct)
 .get('/new',fetchNewProducts)
+
+router.route('/filtered-products')
+.post(filterProducts)
 
 
 

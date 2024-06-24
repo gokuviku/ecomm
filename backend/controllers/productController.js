@@ -192,17 +192,34 @@ const fetchNewProducts = asyncHandler(async (req,res)=>{
         res.status(500).json({ error: "Server error" });
     }
     
+});
+
+
+const filterProducts = asyncHandler(async (req, res) => { 
+    try {
+        const {checked,radio} = req.body
+        let args = {}
+
+        if(checked.length > 0 ) args.category = checked;
+        if (checked.length ) args.price = {$gte: radio[0], $lte:radio[0]}
+        const products = await Product.find(args)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error:"Server Error"})
+        
+        
+    }
 })
 
 export {
     addProduct,
     addProductReview,
     deleteProduct,
-    fetchAllProducts, 
-    fetchNewProducts, 
+    fetchAllProducts,
+    fetchNewProducts,
     fetchProduct,
-    fetchTopProduct,
-    getProductById,
-    updateProduct,
+    fetchTopProduct, filterProducts, getProductById,
+    updateProduct
 };
 
