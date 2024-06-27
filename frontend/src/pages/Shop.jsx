@@ -7,6 +7,7 @@ import { setCategories, setProducts, setChecked } from '../redux/features/shop/s
 import Loader from '../components/Loader'
 
 import { useFetchCategoriesQuery } from '../redux/api/categoryApiSlice'
+import ProductCard from "./Products/ProductCard"
 
 const Shop = () => {
 
@@ -77,9 +78,7 @@ const Shop = () => {
             <div className="container mx-auto">
                 <div className="fixed md:flex-row">
                     <div className="bg-[#151515] p-3 mt-2 mb-2">
-                        <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
-                            Filter By Categories
-                        </h2>
+                        <h2 className="h4 text-center py-2 bg-black rounded-full mb-2"> Filter By Categories</h2>
                         <div className="p-5 w-[15rem]">
                             {categories?.map((c) => (
                                 <div key={c._id} className="mb-2">
@@ -115,11 +114,45 @@ const Shop = () => {
                         <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
                             Filter By Price
                         </h2>
+                        <div className="p-2 w-[15rem]">
+                            <input type="text" placeholder="Enter Price "
+                                value={priceFilter}
+                                onChange={handlePriceChange}
+                                className="w-full px-3 py-2 placeholder-fray-400 border rounded-lg focus:outline-none 
+                                focus:ring focus:border-pink-300"
+                            />
+                        </div>
 
+                        <div className="p-5 pt-0">
+                            <button className="w-full border my-4"
+                                onClick={() => window.location.reload()}
+                            >
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="p-3">
+                        <h2 className="h4 text-center mb-2">
+                            {products.length}Products
+                        </h2>
+                        <div className="flex flex-wrap">
+                            {
+                                products.length === 0 ? (
+                                    <Loader />
+                                ) : (
+                                    products ? Loader.map((p) => (
+                                        <div className="p-3" key={p._id}>
+                                            <ProductCard p={p} />
+                                        </div>
+                                    ))
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
         </>
     )
 }
+
 export default Shop
