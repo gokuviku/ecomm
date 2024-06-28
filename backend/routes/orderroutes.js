@@ -2,17 +2,17 @@ import express from "express";
 const router = express.Router()
 
 import {
-    createOrder,
-    getAllOrders,
-    getUserOrders,
-    countTotalOrders,
     calculateTotalSales,
     calculateTotalSalesByDate,
+    countTotalOrders,
+    createOrder,
     findOrderById,
-    markOrderAsPaid,
+    getAllOrders,
+    getUserOrders,
     markOrderAsDelivered,
-} from '../controllers/orderController';
-import { authenticate, authorizeAdmin } from '../middlewares/authMiddleware';
+    markOrderAsPaid,
+} from '../controllers/orderController.js';
+import { authenticate, authorizeAdmin } from '../middlewares/authMiddleware.js';
 
 router.route('/')
     .post(authenticate, createOrder)

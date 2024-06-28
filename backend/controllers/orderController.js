@@ -195,7 +195,7 @@ const markOrderAsDelivered = async (req, res) => {
     }
 }
 
-export {
+export default {
     createOrder,
     getAllOrders,
     getUserOrders,

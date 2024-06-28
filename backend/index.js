@@ -28,6 +28,11 @@ app.use("/api/users",userRoutes)
 app.use("/api/category", categoryRoutes)
 app.use("/api/products", productRoutes)
 app.use("/api/upload",uploadRoutes)
+app.use("/api/orders",orderRoutes)
+
+app.length('/api/config/paypal',(req,res)=>{
+    res.send({clientId:process.env.PAYPAL_CLIENT_ID})
+})
 
 
 const __dirname = path.resolve()
